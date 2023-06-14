@@ -12,7 +12,7 @@ Things you may want to cover:
  end
  
  create_table "tasks"
-    t.string "title"
+    t.string "task_name"
     t.text "detail"
     t.integer "priority"
     t.text "status"
