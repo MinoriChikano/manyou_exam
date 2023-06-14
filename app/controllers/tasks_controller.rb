@@ -1,4 +1,6 @@
 class TasksController < ApplicationController
+  before_action :set_task, only: [:show, :edit, :update]
+
   def index
     @tasks = Task.all
   end
@@ -21,10 +23,27 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
   end
 
+  def edit
+    @task = Task.find(params[:id])
+  end
+
+  def update
+    @task = Task.find(params[:id])
+    if @task.update(task_params)
+      redirect_to tasks_path, notice: "編集しました"
+    else
+      render :edit
+    end
+  end
+
   private
 
   def task_params
     params.require(:task).permit(:task_name, :detail)
+  end
+
+  def set_task
+    @task = Task.find(params[:id])
   end
 
 end
