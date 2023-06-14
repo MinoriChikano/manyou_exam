@@ -9,7 +9,12 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.create(task_params)
-    redirect_to new_task_path
+    if @task.save
+      flash[:notice] = "新規タスクを作成しました"
+      redirect_to tasks_path
+    else
+      render :new
+    end
   end
 
   def show
