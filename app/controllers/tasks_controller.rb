@@ -12,8 +12,7 @@ class TasksController < ApplicationController
   def create
     @task = Task.create(task_params)
     if @task.save
-      flash[:notice] = "新規タスクを作成しました"
-      redirect_to tasks_path
+      redirect_to tasks_path, notice:  "新規タスクを作成しました"
     else
       render :new
     end
@@ -31,6 +30,11 @@ class TasksController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @task.destroy
+    redirect_to tasks_path, notice:"削除しました"
   end
 
   private
