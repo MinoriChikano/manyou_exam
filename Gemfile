@@ -3,7 +3,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.0.1'
 
-gem 'rexml'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.6'
 # Use postgresql as the database for Active Record
@@ -36,11 +35,10 @@ group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'
 
-  gem 'rspec-rails'
+  gem "rspec-rails", "~> 4.0.1"
   gem 'spring-commands-rspec'
   gem 'factory_bot_rails'
-  gem 'faker'
-  gem 'launchy'
+  gem 'rexml'
 end
 
 group :development do
@@ -57,7 +55,7 @@ end
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 3.26'
-  gem 'selenium-webdriver', '>= 4.0.0.rc1'
+  #gem 'selenium-webdriver', '>= 4.0.0.rc1'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
 end
