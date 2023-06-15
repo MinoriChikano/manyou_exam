@@ -1,25 +1,25 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
- create_table "users"
-    t.string "name"
-    t.text "email"
-    t.text "password_digest"
- end
+1.users table
+ ・ id:integer
+ ・ name:string
+ ・ email:string
+ ・ passward_digest: string
  
- create_table "tasks"
-    t.string "task_name"
-    t.text "detail"
-    t.integer "priority"
-    t.text "status"
- end
+ 
+2.tasks table
+ ・ id:integer
+ ・ user_id (FK)
+ ・ task_name:string
+ ・ detail:text
+ ・ priority:string 
+ ・ status:string
 
- create_table "labels"
-    t.string "title"
-    t.text "remark"
- end
+3.labels table
+ ・ id:integer
+ ・ user_id (FK)
+ ・ create_table
+ ・ title:string
+ ・ remark:text
+
 
