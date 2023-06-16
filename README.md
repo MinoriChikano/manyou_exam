@@ -32,4 +32,4 @@ herokuデプロイ実行手順
 5.$ heroku buildpacks:set heroku/ruby
 6.$ heroku buildpacks:add --index 1 heroku/nodejs
 7.$ heroku addons:create heroku-postgresql
-8.$ git push heroku master
+8.$ git push heroku (ブランチ名):master
