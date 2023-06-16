@@ -23,3 +23,13 @@
  ・ remark:text
 
 
+herokuデプロイ実行手順
+
+1.heroku create
+2.gemを追加 gem 'net-smtp' gem 'net-imap' gem 'net-pop'
+3.git add .
+4.git commit -m “コメント”
+5.$ heroku buildpacks:set heroku/ruby
+6.$ heroku buildpacks:add --index 1 heroku/nodejs
+7.$ heroku addons:create heroku-postgresql
+8.$ git push heroku (ブランチ名):master
