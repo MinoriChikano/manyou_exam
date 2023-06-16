@@ -1,8 +1,5 @@
 {
   "name": "everyleaf-exam",
-  "engines": {
-    "node": "16.x"
-  },
   "private": true,
   "dependencies": {
     "@babel/plugin-proposal-private-methods": "^7.18.6",
