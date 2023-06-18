@@ -20,5 +20,10 @@
   <div class="deadline">
     <%= form.label t('view.deadline') %>
     <%= form.datetime_field :expired_at %>
+  </div>
+  <div class="status">
+    <%= form.label t('view.stats') %>
+    <%= form.datetime_field :status %>
+  </div>  
   <%= form.submit %>
 <% end %>
