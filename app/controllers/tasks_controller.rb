@@ -41,6 +41,10 @@ class TasksController < ApplicationController
     redirect_to tasks_path, notice:"削除しました"
   end
 
+  def search
+    @tasks = Task.search(params[:keyword])
+  end
+
   private
 
   def task_params
