@@ -10,7 +10,16 @@ RSpec.describe 'タスク管理機能', type: :system do
         visit new_task_path
         fill_in 'task[task_name]', with: 'task1'
         fill_in 'task[detail]', with:'task1'
+        fill_in 'task[expired_at]', with:'2023/06/19/16:30'
         click_on '登録する'
+        expect(page).to have_content 'task'
+      end
+    end
+    context '作成されたタスクが表示された場合' do
+      it '終了期限の降順で表示される' do
+        visit tasks_path
+        click_on "終了期限でソートする"
+        task_list = all('td').first
         expect(page).to have_content 'task'
       end
     end
