@@ -22,8 +22,8 @@
     <%= form.datetime_field :expired_at %>
   </div>
   <div class="status">
-    <%= form.label t('view.stats') %>
-    <%= form.datetime_field :status %>
+    <%= form.label t('view.status') %>
+    <%= form.select :status,['未着手','着手中','完了'],{ include_blank: '選択してください'} %>
   </div>  
   <%= form.submit %>
 <% end %>
