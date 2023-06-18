@@ -2,6 +2,7 @@ FactoryBot.define do
   factory :task do
     task_name { 'task_name' }
     detail { 'detail' }
+    
   end
   
   factory :second_task, class: Task do
