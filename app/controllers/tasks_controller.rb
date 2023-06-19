@@ -42,7 +42,15 @@ class TasksController < ApplicationController
   end
 
   def search
-    @tasks = Task.search(params[:keyword])
+    if params[:keyword].present? && params[:status].present?
+      @tasks = Task.search(params[:keyword]).where(status: params[:status])
+    elsif params[:keyword].present?
+      @tasks = Task.search(params[:keyword])
+    elsif params[:status].present?
+      @tasks = Task.where(status: params[:status])
+    else
+      @tasks = Task.all
+    end
   end
 
   private
