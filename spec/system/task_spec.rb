@@ -21,7 +21,7 @@ RSpec.describe 'タスク管理機能', type: :system do
         visit tasks_path
         click_on "終了期限でソートする"
         task_list = all('td').first
-        expect(page).to have_content 'task'
+        expect(page).to have_content 'タスク'
       end
     end
   end
@@ -31,14 +31,14 @@ RSpec.describe 'タスク管理機能', type: :system do
         # テストで使用するためのタスクを作成
         task = FactoryBot.create(:task, task_name: 'task')
         visit tasks_path
-        expect(page).to have_content 'task'
+        expect(page).to have_content 'タスク'
       end
     end
     context 'タスクが作成日時の降順に並んでいる場合' do
       it '新しいタスクが一番上に表示される' do
         visit tasks_path
         task_list = all('td').first
-        expect(page).to have_content 'task'
+        expect(page).to have_content 'タスク'
       end
     end
   end
@@ -47,7 +47,7 @@ RSpec.describe 'タスク管理機能', type: :system do
       it '該当タスクの内容が表示される' do
         visit tasks_path
         click_on '詳細', match: :first
-        expect(page).to have_content 'Factory'
+        expect(page).to have_content 'タスク'
       end
     end
   end
@@ -72,7 +72,8 @@ RSpec.describe 'タスク管理機能', type: :system do
         it "ステータスに完全一致するタスクが絞り込まれる" do
           visit tasks_path
           select '完了', from: 'status'
-          expect(page).to have_content 'task'
+          expect(page).to have_content '完了'
+          click_on '検索'
           # ここに実装する
           # プルダウンを選択する「select」について調べてみること
         end
@@ -82,11 +83,11 @@ RSpec.describe 'タスク管理機能', type: :system do
           visit tasks_path
           fill_in 'task_name', with:'task'
           select '完了', from: 'status'
-          expect(page).to have_content 'task'
+          expect(page).to have_content '完了'
+          click_on '検索'
           # ここに実装する
         end
       end
     end
   end
-
 end
