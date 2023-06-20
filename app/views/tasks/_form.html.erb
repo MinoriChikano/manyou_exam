@@ -25,5 +25,9 @@
     <%= form.label t('view.status') %>
     <%= form.select :status,['未着手','着手中','完了'],{ include_blank: '選択してください'} %>
   </div>  
+  <div class="priority">
+  <%= form.label t('view.priority') %>
+  <%= form.select :status,[ "高","中","底" ],{ include_blank: '選択してください'} %>
+</div>  
   <%= form.submit %>
 <% end %>

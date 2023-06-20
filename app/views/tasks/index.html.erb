@@ -24,6 +24,7 @@
     <th><%= t('view.content') %></th>
     <th><%= t('view.deadline') %></th>
     <th><%= t('view.status') %></th>
+    <th><%= t('view.priority') %></th>
   </tr>
 
 <% @tasks.each do |task| %>
@@ -32,6 +33,7 @@
     <td><%= task.detail %></td>
     <td><%= task.expired_at %></td>
     <td><%= task.status %></td>
+    <td><%= task.priority %></td>
     <td><%= link_to t('view.detail'), task_path(task.id) %></td>
     <td><%= link_to t('view.edit'), edit_task_path(task.id) %></td>
     <td><%= link_to t('view.delete'), task_path(task.id), method: :delete ,data: { confirm: 'are you ok ?' } %></td>
