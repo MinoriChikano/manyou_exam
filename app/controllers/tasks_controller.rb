@@ -42,10 +42,10 @@ class TasksController < ApplicationController
   end
 
   def search
-    if params[:keyword].present? && params[:status].present?
-      @tasks = Task.search_by_keyword_and_status(params[:keyword], params[:status])
-    elsif params[:keyword].present?
-      @tasks = Task.search_by_keyword(params[:keyword])
+    if params[:task_name].present? && params[:status].present?
+      @tasks = Task.search_by_name_and_status(params[:task_name], params[:status])
+    elsif params[:task_name].present?
+      @tasks = Task.search_by_name(params[:task_name])
     elsif params[:status].present?
       @tasks = Task.search_by_status(params[:status])
     else
