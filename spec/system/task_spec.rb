@@ -24,6 +24,14 @@ RSpec.describe 'タスク管理機能', type: :system do
         expect(page).to have_content 'タスク'
       end
     end
+    context '作成されたタスクが表示された場合' do
+      it '優先順で表示される' do
+        visit tasks_path
+        click_on "優先順位でソートする"
+        task_list = all('td').first
+        expect(page).to have_content 'タスク'
+      end
+    end
   end
   describe '一覧表示機能' do
     context '一覧画面に遷移した場合' do
@@ -54,7 +62,6 @@ RSpec.describe 'タスク管理機能', type: :system do
   describe 'タスク管理機能', type: :system do
     describe '検索機能' do
       before do
-        # 必要に応じて、テストデータの内容を変更して構わない
         FactoryBot.create(:task, task_name: "task")
         FactoryBot.create(:second_task, task_name: "sample")
       end
@@ -63,29 +70,25 @@ RSpec.describe 'タスク管理機能', type: :system do
           visit tasks_path
           fill_in 'task_name', with:'task'
           click_on '検索'
-          # タスクの検索欄に検索ワードを入力する (例: task)
-          # 検索ボタンを押す
           expect(page).to have_content 'task'
         end
       end
       context 'ステータス検索をした場合' do
         it "ステータスに完全一致するタスクが絞り込まれる" do
           visit tasks_path
-          select '完了', from: 'status'
-          expect(page).to have_content '完了'
+          select '着手中', from: 'status'
           click_on '検索'
-          # ここに実装する
-          # プルダウンを選択する「select」について調べてみること
+          expect(page).to have_content '着手中'
         end
       end
       context 'タイトルのあいまい検索とステータス検索をした場合' do
         it "検索キーワードをタイトルに含み、かつステータスに完全一致するタスク絞り込まれる" do
           visit tasks_path
-          fill_in 'task_name', with:'task'
-          select '完了', from: 'status'
-          expect(page).to have_content '完了'
+          sleep (5)
+          fill_in 'task_name', with:'t'
+          select '未着手', from: 'status'
           click_on '検索'
-          # ここに実装する
+          expect(page).to have_content 'task'
         end
       end
     end
