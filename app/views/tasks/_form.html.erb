@@ -8,26 +8,28 @@
       </ul>
     </div>
   <% end %>
+  <div class ="tag">
+    <div class="task_name">
+      <%= form.label t('view.task_name') %>
+      <%= form.text_field :task_name %>
+    </div>
+    <div class="detail">
+      <%= form.label t('view.detail') %>
+      <%= form.text_field :detail %>
+    </div>
+    <div class="deadline">
+      <%= form.label t('view.deadline') %>
+      <%= form.datetime_field :expired_at %>
+    </div>
+    <div class="status">
+      <%= form.label t('view.status') %>
+      <%= form.select :status,['未着手','着手中','完了'],{ include_blank: '選択してください'} %>
+    </div>  
+    <div class="priority">
+      <%= form.label t('view.priority') %>
+      <%= form.select :priority,Task.priorities.keys.to_a,{ include_blank: '選択してください'} %>
+    </div>  
+    <%= form.submit %>
+  </div>
   
-  <div class="task_name">
-    <%= form.label t('view.task_name') %>
-    <%= form.text_field :task_name %>
-  </div>
-  <div class="detail">
-    <%= form.label t('view.detail') %>
-    <%= form.text_field :detail %>
-  </div>
-  <div class="deadline">
-    <%= form.label t('view.deadline') %>
-    <%= form.datetime_field :expired_at %>
-  </div>
-  <div class="status">
-    <%= form.label t('view.status') %>
-    <%= form.select :status,['未着手','着手中','完了'],{ include_blank: '選択してください'} %>
-  </div>  
-  <div class="priority">
-  <%= form.label t('view.priority') %>
-  <%= form.select :priority,Task.priorities.keys.to_a,{ include_blank: '選択してください'} %>
-</div>  
-  <%= form.submit %>
 <% end %>

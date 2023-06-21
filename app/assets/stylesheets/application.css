@@ -14,28 +14,60 @@
  *= require_self
  */
 
+ body {
+    margin: 0;
+    padding: 0;
+ }
+
  header{
     padding-top: 2%;
-    padding-left: 35px;
+    padding-left: 50px;
  }
 
  .search_tag{
-    padding-left: 35px;
+    padding-left: 50px;
+ }
+
+ .search-icon{
+    padding-left: 20px;
+ }
+
+ .new_tag{
+    padding-left: 50px;
+ }
+
+ .tag{
+    padding-left: 50px;
+ }
+
+ h5 {
+    padding-left: 50px;
  }
 
  th{
-    padding-left: 35px;
+    padding-left: 50px;
     text-align: center;
  }
 
  td{
-    padding-left: 35px;
+    padding-left: 50px;
  } 
 
- div.centered-div {
-    margin: 0 auto;
-    text-align: center;
-  }
- footer{
+ .center_tag{
     text-align: center;
  }
+
+ .paginate_tag {
+    padding-left: 43.5%;
+  }
+ footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px; 
+    background-color: #f5f5f5;
+    text-align: center;
+    line-height: 50px;
+ }
+

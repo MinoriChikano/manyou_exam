@@ -1,5 +1,14 @@
-<h4><%= t('view.details_screen') %></h4>
-<p><%= t('view.task_name') %>: <%= @task.task_name %></p>
-<p><%= t('view.content') %>: <%= @task.detail %></p>
-<p><%= t('view.status') %>: <%= @task.status %></p>
-<p><%= t('view.priority') %>: <%= @task.priority %></p>
+<table>
+  <tr>
+    <th><span class="badge rounded-pill bg-light text-dark"><%= t('view.task_name') %></th> 
+    <th><span class="badge rounded-pill bg-light text-dark"><%= t('view.content') %></th> 
+    <th><span class="badge rounded-pill bg-light text-dark"><%= t('view.status') %></th> 
+    <th><span class="badge rounded-pill bg-light text-dark"><%= t('view.priority') %></th> 
+  </tr>
+  <tr>
+    <td><%= @task.task_name %></td>
+    <td><%= @task.detail %></td>
+    <td class = center_tag ><%= @task.status %></td>
+    <td class = center_tag ><%= @task.priority %></td>
+  </tr>
+</table>
