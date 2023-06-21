@@ -4,6 +4,7 @@ FactoryBot.define do
     detail { '詳細1' }
     expired_at {'2023/06/16'}
     status { '未着手' }
+    priority { '中' }
   end
   
   factory :second_task, class: Task do
@@ -11,6 +12,7 @@ FactoryBot.define do
     detail { '詳細2' }
     expired_at { '2023/06/17' }
     status { '着手中' }
+    priority { '高' }
   end
   
   factory :third_task, class: Task do
@@ -18,5 +20,6 @@ FactoryBot.define do
     detail { '詳細3' }
     expired_at { '2023/06/18' }
     status { '完了' }
+    priority { '低' }
   end
 end
