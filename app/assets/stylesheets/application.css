@@ -13,3 +13,29 @@
  *= require_tree .
  *= require_self
  */
+
+ header{
+    padding-top: 2%;
+    padding-left: 35px;
+ }
+
+ .search_tag{
+    padding-left: 35px;
+ }
+
+ th{
+    padding-left: 35px;
+    text-align: center;
+ }
+
+ td{
+    padding-left: 35px;
+ } 
+
+ div.centered-div {
+    margin: 0 auto;
+    text-align: center;
+  }
+ footer{
+    text-align: center;
+ }

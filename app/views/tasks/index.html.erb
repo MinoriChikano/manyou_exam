@@ -1,30 +1,34 @@
-<h1><%= t('view.list') %></h1>
 
 <p><%= notice %></p>
-
+<div class= search_tag>
 <%= form_with(url: search_tasks_path, local: true, method: :get, class: "search-form" ) do |form| %>
   <%= form.text_field :task_name, placeholder: "検索する", class: "search-input" %>
   <label for="search-icon" class="search-label">
     <i class="fas fa-search"></i>
   </label>
   <%= form_with(url: search_tasks_path, local: true, method: :get, class: "search-form" ) do |form| %>
-    <%= form.select :status,['未着手','着手中','完了'],{ include_blank: '選択してください'} %>
+    <%= form.select :status,['未着手','着手中','完了'],{ include_blank: '進歩状況'} %>
     <label for="search-icon" class="search-label">
       <i class="fas fa-search"></i>
     </label>
-  <div class="search-icon">
+  <a class="search-icon">
     <%= form.submit "検索", class: "search-btn", id: "search-icon" %>
-  </div>
+  </a>
   <% end %>
 <% end %>
+</div>
+
+<br>
+
+<button type="button" class="btn btn-secondary"><%= link_to t('view.create_new_task'), new_task_path %></button>
 
 <table>
   <tr>
-    <th><%= t('view.task_name') %></th>
-    <th><%= t('view.content') %></th>
-    <th><%= t('view.deadline') %></th>
-    <th><%= t('view.status') %></th>
-    <th><%= t('view.priority') %></th>
+    <th><span class="badge rounded-pill bg-light text-dark"><%= t('view.task_name') %></span></th>
+    <th><span class="badge rounded-pill bg-light text-dark"><%= t('view.content') %></span></th>
+    <th><span class="badge rounded-pill bg-light text-dark"><%= link_to t('view.deadline'), tasks_path(sort_expired: "true") %></span></th>
+    <th><span class="badge rounded-pill bg-light text-dark"><%= t('view.status') %></span></th>
+    <th><span class="badge rounded-pill bg-light text-dark"><%= link_to t('view.priority'), tasks_path(sort_priority: "true") %></span></th>
   </tr>
 
 <% @tasks.each do |task| %>
@@ -34,15 +38,16 @@
     <td><%= task.expired_at %></td>
     <td><%= task.status %></td>
     <td><%= task.priority %></td>
-    <td><%= link_to t('view.detail'), task_path(task.id) %></td>
-    <td><%= link_to t('view.edit'), edit_task_path(task.id) %></td>
-    <td><%= link_to t('view.delete'), task_path(task.id), method: :delete ,data: { confirm: 'are you ok ?' } %></td>
+    <td><button type="button" class="btn btn-outline-primary"><%= link_to t('view.detail'), task_path(task.id) %></button></td>
+    <td><button type="button" class="btn btn-outline-success"><%= link_to t('view.edit'), edit_task_path(task.id) %></button></td>
+    <td><button type="button" class="btn btn-outline-danger"><%= link_to t('view.delete'), task_path(task.id), method: :delete ,data: { confirm: 'are you ok ?' } %></button></td>
   </tr>
 <% end %>
 </table>
 
-<%= link_to "終了期限でソートする", tasks_path(sort_expired: "true") %>
-<%= link_to "優先順位でソートする", tasks_path(sort_priority: "true") %>
-<%= link_to t('view.create_new_task'), new_task_path %>
-<%= paginate @tasks %>
+<div class="centered-div">
+  <div class= paginate_tag>
+    <%= paginate @tasks %>
+  </div>
+</div>
 
