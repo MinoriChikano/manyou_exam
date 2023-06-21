@@ -4,11 +4,11 @@ class TasksController < ApplicationController
   def index
     @tasks = Task.all.order(created_at:"DESC").page(params[:page]).per(10)
     if params[:sort_expired]
-      @tasks = Task.all.order(expired_at:"DESC")
+      @tasks = Task.all.order(expired_at:"DESC").page(params[:page]).per(10)
     end
 
     if params[:sort_priority]
-      @tasks = Task.all.order(priority:"ASC")
+      @tasks = Task.all.order(priority:"ASC").page(params[:page]).per(10)
     end
   end
 
