@@ -193,3 +193,7 @@ ja:
     create_new_task: 新規タスクを作成
     details_screen: 詳細画面
     edit_task: タスクを編集
+    deadline: 締切
+    status: 進捗状況
+    priority: 優先順位
+    programming_monk: プログラミング修行僧

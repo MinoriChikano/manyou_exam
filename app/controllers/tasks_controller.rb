@@ -2,7 +2,14 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tasks = Task.all.order(created_at:"DESC")
+    @tasks = Task.all.order(created_at:"DESC").page(params[:page]).per(10)
+    if params[:sort_expired]
+      @tasks = Task.all.order(expired_at:"DESC").page(params[:page]).per(10)
+    end
+
+    if params[:sort_priority]
+      @tasks = Task.all.order(priority:"ASC").page(params[:page]).per(10)
+    end
   end
 
   def new
@@ -37,10 +44,22 @@ class TasksController < ApplicationController
     redirect_to tasks_path, notice:"削除しました"
   end
 
+  def search
+    if params[:task_name].present? && params[:status].present?
+      @tasks = Task.search_by_name_and_status(params[:task_name], params[:status])
+    elsif params[:task_name].present?
+      @tasks = Task.search_by_name(params[:task_name])
+    elsif params[:status].present?
+      @tasks = Task.search_by_status(params[:status])
+    else
+      @tasks = Task.all
+    end
+  end
+
   private
 
   def task_params
-    params.require(:task).permit(:task_name, :detail)
+    params.require(:task).permit(:task_name, :detail, :expired_at, :status, :priority)
   end
 
   def set_task

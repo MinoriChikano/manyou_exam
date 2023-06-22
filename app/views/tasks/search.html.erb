@@ -1,0 +1,14 @@
+
+<div class="search result">
+  <% @tasks.each do |task| %>
+    <tr>
+      <td><%= task.task_name %></td>
+      <td><%= task.detail %></td>
+      <td><%= task.expired_at %></td>
+      <td><%= task.status %></td>
+      <td><%= link_to t('view.detail'), task_path(task.id) %></td>
+      <td><%= link_to t('view.edit'), edit_task_path(task.id) %></td>
+      <td><%= link_to t('view.delete'), task_path(task.id), method: :delete ,data: { confirm: 'are you ok ?' } %></td>
+    </tr>
+  <% end %>
+</div>

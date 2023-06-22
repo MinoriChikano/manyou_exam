@@ -12,7 +12,7 @@
  ・ user_id (FK)
  ・ task_name:string
  ・ detail:text
- ・ priority:string 
+ ・ priority:integer
  ・ status:string
 
 3.labels table

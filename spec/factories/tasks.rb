@@ -1,12 +1,25 @@
 FactoryBot.define do
   factory :task do
-    task_name { 'task_name' }
-    detail { 'detail' }
+    task_name { 'タスク1' }
+    detail { '詳細1' }
+    expired_at {'2023/06/16'}
+    status { '未着手' }
+    priority { '中' }
   end
   
   factory :second_task, class: Task do
-    task_name { 'Factoryで作ったデフォルトのタイトル2' }
-    detail { 'Factoryで作ったデフォルトのコンテント2' }
+    task_name { 'タスク2' }
+    detail { '詳細2' }
+    expired_at { '2023/06/17' }
+    status { '着手中' }
+    priority { '高' }
   end
   
+  factory :third_task, class: Task do
+    task_name { 'タスク3' }
+    detail { '詳細3' }
+    expired_at { '2023/06/18' }
+    status { '完了' }
+    priority { '低' }
+  end
 end
