@@ -45,8 +45,8 @@ RSpec.describe 'タスク管理機能', type: :system do
     context 'タスクが作成日時の降順に並んでいる場合' do
       it '新しいタスクが一番上に表示される' do
         visit tasks_path
-        task_list = all('td').first
-        expect(page).to have_content 'タスク'
+        task_list = all('td')
+        expect(task_list.first).to have_content 'タスク1'
       end
     end
   end
@@ -84,7 +84,6 @@ RSpec.describe 'タスク管理機能', type: :system do
       context 'タイトルのあいまい検索とステータス検索をした場合' do
         it "検索キーワードをタイトルに含み、かつステータスに完全一致するタスク絞り込まれる" do
           visit tasks_path
-          sleep (5)
           fill_in 'task_name', with:'t'
           select '未着手', from: 'status'
           click_on '検索'
