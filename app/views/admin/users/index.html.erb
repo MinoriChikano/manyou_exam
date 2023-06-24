@@ -1,0 +1,25 @@
+<table>
+  <tr>
+    <th><span class="badge rounded-pill bg-light text-dark"><%= t('view.task_name') %></span></th>
+    <th><span class="badge rounded-pill bg-light text-dark"><%= t('view.content') %></span></th>
+    <th><span class="badge rounded-pill bg-light text-dark"><%= link_to t('view.deadline'), tasks_path(sort_expired: "true") %></span></th>
+    <th><span class="badge rounded-pill bg-light text-dark"><%= t('view.status') %></span></th>
+    <th><span class="badge rounded-pill bg-light text-dark"><%= link_to t('view.priority'), tasks_path(sort_priority: "true") %></span></th>
+  </tr>
+
+<% @tasks.each do |task| %>
+  <tr>
+  <% if task.user == current_user %>
+    <td><%= task.task_name %></td>
+    <td><%= task.detail %></td>
+    <td><%= task.expired_at %></td>
+    <td class = center_tag ><%= task.status %></td>
+    <td class = center_tag ><%= task.priority %></td>
+    <td><button type="button" class="btn btn-outline-primary"><%= link_to t('view.detail'), task_path(task.id) %></button></td>
+    <td><button type="button" class="btn btn-outline-success"><%= link_to t('view.edit'), edit_task_path(task.id) %></button></td>
+    <td><button type="button" class="btn btn-outline-danger"><%= link_to t('view.delete'), task_path(task.id), method: :delete ,data: { confirm: 'are you ok ?' } %></button></td>
+  <% else %>
+  <% end %>
+  </tr>
+<% end %>
+</table>
