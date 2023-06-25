@@ -24,8 +24,11 @@
      </div>
      <div class="passward">
        <%= form.label "パスワード確認" %>
-      <%= form.text_field :password_confirmation %>
+       <%= form.text_field :password_confirmation %>
      </div>
+     <div class="user_type">
+       <%= form.label "ユーザータイプ" %>
+       <%= form.select :admin ,[['管理者',true],['一般',false]] %> 
      <%= form.submit %>
    </div>
    
