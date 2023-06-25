@@ -17,6 +17,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @tasks = Task.all.includes(:user)
     unless current_user.id == @user.id
       redirect_to :root
     end

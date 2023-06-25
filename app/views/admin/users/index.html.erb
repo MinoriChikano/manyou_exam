@@ -1,25 +1,25 @@
 <table>
-  <tr>
-    <th><span class="badge rounded-pill bg-light text-dark"><%= t('view.task_name') %></span></th>
-    <th><span class="badge rounded-pill bg-light text-dark"><%= t('view.content') %></span></th>
-    <th><span class="badge rounded-pill bg-light text-dark"><%= link_to t('view.deadline'), tasks_path(sort_expired: "true") %></span></th>
-    <th><span class="badge rounded-pill bg-light text-dark"><%= t('view.status') %></span></th>
-    <th><span class="badge rounded-pill bg-light text-dark"><%= link_to t('view.priority'), tasks_path(sort_priority: "true") %></span></th>
-  </tr>
 
-<% @tasks.each do |task| %>
-  <tr>
-  <% if task.user == current_user %>
-    <td><%= task.task_name %></td>
-    <td><%= task.detail %></td>
-    <td><%= task.expired_at %></td>
-    <td class = center_tag ><%= task.status %></td>
-    <td class = center_tag ><%= task.priority %></td>
-    <td><button type="button" class="btn btn-outline-primary"><%= link_to t('view.detail'), task_path(task.id) %></button></td>
-    <td><button type="button" class="btn btn-outline-success"><%= link_to t('view.edit'), edit_task_path(task.id) %></button></td>
-    <td><button type="button" class="btn btn-outline-danger"><%= link_to t('view.delete'), task_path(task.id), method: :delete ,data: { confirm: 'are you ok ?' } %></button></td>
-  <% else %>
-  <% end %>
-  </tr>
+<div class = new_tag>
+  <button type="button" class="btn btn-outline-primary btn-sm"><%= link_to "新規ユーザ登録", new_admin_user_path %></button>
+</div>
+
+<tr>
+<th><span class="badge rounded-pill bg-light text-dark"><%= "ユーザID" %></span></th>
+<th><span class="badge rounded-pill bg-light text-dark"><%= "名前" %></span></th>
+<th><span class="badge rounded-pill bg-light text-dark"><%= "タスク数" %></span></th>
+<th><span class="badge rounded-pill bg-light text-dark"><%= "種別" %></span></th>
+</tr>
+ 
+<% @users.each do |user| %>
+<tr>
+  <td><%= user.id %></td>
+  <td><%= user.name %></td>
+  <td><%= user.tasks.count %></td>
+  <td><%= user.admin ? '管理者':'一般' %></td>
+  <td><button type="button" class="btn btn-outline-primary"><%= link_to t('view.detail'),  admin_user_path(user.id) %></button></td>
+  <td><button type="button" class="btn btn-outline-success"><%= link_to t('view.edit'), edit_admin_user_path(user.id) %></button></td>
+  <td><button type="button" class="btn btn-outline-danger"><%= link_to t('view.delete'), admin_user_path(user.id), method: :delete ,data: { confirm: 'are you ok ?' } %></button></td>
+</tr>
 <% end %>
 </table>

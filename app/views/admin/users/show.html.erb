@@ -9,15 +9,12 @@
     <th><span class="badge rounded-pill bg-light text-dark"><%= t('view.status') %></th> 
     <th><span class="badge rounded-pill bg-light text-dark"><%= t('view.priority') %></th> 
   </tr>
-  <% @tasks.each do |task| %>
+  <% @user.tasks.each do |task| %>
     <tr>
-    <% if task.user == current_user %>
       <td><%= task.task_name %></td>
       <td><%= task.detail %></td>
       <td class = center_tag ><%= task.status %></td>
       <td class = center_tag ><%= task.priority %></td>
-    <% else %>
-    <% end %>
     </tr>
   <% end %>
 </table>
