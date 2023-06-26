@@ -11,10 +11,12 @@ class User < ApplicationRecord
   private
 
   def non_updatable_admin
-    throw :abort if User.where(admin: :true).count == 1 && self.admin == false
+    throw :abort if User.where(admin: :true).count == 1 && self.admin_change == [true, false]
+    errors.add :base, '管理者は最低1人必要です'
   end
 
   def undeletable_admin
-    throw :abort if User.where(admin: :true).count == 1
+    throw :abort if User.where(admin: :true).count == 1 && self.admin?
+    errors.add :base, '管理者は最低1人必要です'
   end
 end
