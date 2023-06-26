@@ -14,4 +14,12 @@ FactoryBot.define do
     password_confirmation {"123456"}
     admin {false}
   end
+
+  factory :third_user, class: User do
+    name { "ユーザ3" }
+    email { "zzzz@test.com" }
+    password { "123456" }
+    password_confirmation {"123456"}
+    admin {true}
+  end
 end

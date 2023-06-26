@@ -60,12 +60,13 @@ RSpec.describe 'ユーザ管理機能', type: :system do
     before do
       @first_user=FactoryBot.create(:user)
       @second_user=FactoryBot.create(:second_user)
+      @third_user=FactoryBot.create(:third_user)
     end
     context '管理ユーザの場合' do
       before do
         visit new_session_path
-        fill_in 'Email', with: @first_user.email
-        fill_in 'Password', with: @first_user.password
+        fill_in 'Email', with: @third_user.email
+        fill_in 'Password', with: @third_user.password
         click_button "Log in"
       end
       it '管理画面にアクセスできる' do
@@ -74,7 +75,7 @@ RSpec.describe 'ユーザ管理機能', type: :system do
         expect(current_path).to eq admin_users_path
       end
       it '管理画面ユーザは新規登録ができる' do
-        sleep(4)
+        sleep(2)
         visit admin_users_path
         click_button "新規ユーザ登録"
         fill_in 'user[name]', with: 'tadao'
@@ -84,25 +85,52 @@ RSpec.describe 'ユーザ管理機能', type: :system do
         select '一般', from: 'user[admin]'
         click_on '登録する'
         expect(page).to have_content '作成しました!'
+        sleep(2)
       end
       it '管理ユーザはユーザの詳細画面にアクセスできる' do
         visit admin_users_path
-        sleep(4)
+        sleep(2)
         user_list = all('td')
-        click_on '詳細', match: :first
+        sleep(2)
+        click_button '詳細', match: :first
         sleep(2)
         expect(current_path).to eq admin_user_path(@first_user.id)
+        sleep(2)
       end
       it '管理ユーザは詳細画面からユーザを編集できる' do
         visit admin_users_path
-        sleep(4)
+        sleep(2)
         user_list = all('td')
+        sleep(2)
         click_on '編集', match: :first
         sleep(2)
         fill_in 'user[password]', with: '654321'
         fill_in 'user[password_confirmation]', with: '654321'
-        expect(current_path).to eq admin_user_path(@first_user.id)
-      end     
+        click_on '更新する'
+        sleep(2)
+        expect(current_path).to eq admin_users_path
+        sleep(2)
+      end
+      it '管理者ユーザはユーザの削除ができる' do
+        visit admin_users_path
+        user_list = all('td')
+        click_on '削除', match: :first
+        sleep(2)
+        page.accept_confirm
+        expect(current_path).to eq admin_users_path
+      end
+    end
+    context '一般ユーザの場合' do
+      before do
+        visit new_session_path
+        fill_in 'Email', with: @second_user.email
+        fill_in 'Password', with: @second_user.password
+        click_button "Log in"
+      end
+      it '管理画面にアクセスできない' do
+        visit admin_users_path
+        expect(current_path).not_to eq admin_users_path
+      end
     end
   end
 end
