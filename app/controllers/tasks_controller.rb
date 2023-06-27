@@ -2,13 +2,13 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tasks = Task.all.order(created_at:"DESC").page(params[:page]).per(10)
+    @tasks = current_user.tasks.order(created_at:"DESC").page(params[:page]).per(10)
     if params[:sort_expired]
-      @tasks = Task.all.order(expired_at:"DESC").page(params[:page]).per(10)
+      @tasks = current_user.tasks.order(expired_at:"DESC").page(params[:page]).per(10)
     end
 
     if params[:sort_priority]
-      @tasks = Task.all.order(priority:"ASC").page(params[:page]).per(10)
+      @tasks = current_user.tasks.order(priority:"ASC").page(params[:page]).per(10)
     end
   end
 
@@ -17,9 +17,9 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.create(task_params)
+    @task = current_user.tasks.build(task_params)
     if @task.save
-      redirect_to tasks_path, notice:  "新規タスクを作成しました"
+      redirect_to tasks_path, notice:  "新規タスクを作成しました!"
     else
       render :new
     end

@@ -1,0 +1,35 @@
+<%= form_with model: [:admin, @user], local: true do |form| %>
+    <% if @user.errors.any? %>
+     <div id="error_explanation">
+       <ul>
+       <% @user.errors.full_messages.each do |msg| %>
+         <li><%= msg %></li>
+       <% end %>
+       </ul>
+     </div>
+   <% end %>
+   
+   <div class ="tag">
+     <div class="name">
+       <%= form.label "ユーザー名" %>
+       <%= form.text_field :name %>
+     </div>
+     <div class="email">
+       <%= form.label "メールアドレス" %>
+       <%= form.text_field :email %>
+     </div>
+     <div class="password">
+       <%= form.label "パスワード" %>
+       <%= form.text_field :password %>
+     </div>
+     <div class="passward">
+       <%= form.label "パスワード確認" %>
+       <%= form.text_field :password_confirmation %>
+     </div>
+     <div class="user_type">
+       <%= form.label "ユーザータイプ" %>
+       <%= form.select :admin ,[['管理者',true],['一般',false]] %> 
+     <%= form.submit %>
+   </div>
+   
+ <% end %>

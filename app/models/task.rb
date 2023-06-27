@@ -1,5 +1,6 @@
 class Task < ApplicationRecord
   validates :task_name, :detail, presence: true
+  belongs_to :user
 
   enum priority:{
     高: 1,

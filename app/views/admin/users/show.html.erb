@@ -1,0 +1,20 @@
+<h1><%= @user.name %>のページ</h1>
+
+<p>メールアドレス: <%= @user.email %></p>
+
+<table>
+  <tr>
+    <th><span class="badge rounded-pill bg-light text-dark"><%= t('view.task_name') %></th> 
+    <th><span class="badge rounded-pill bg-light text-dark"><%= t('view.content') %></th> 
+    <th><span class="badge rounded-pill bg-light text-dark"><%= t('view.status') %></th> 
+    <th><span class="badge rounded-pill bg-light text-dark"><%= t('view.priority') %></th> 
+  </tr>
+  <% @user.tasks.each do |task| %>
+    <tr>
+      <td><%= task.task_name %></td>
+      <td><%= task.detail %></td>
+      <td class = center_tag ><%= task.status %></td>
+      <td class = center_tag ><%= task.priority %></td>
+    </tr>
+  <% end %>
+</table>
