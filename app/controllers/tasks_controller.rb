@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_task, only: [:show, :edit, :update, :destroy,]
 
   def index
     @tasks = current_user.tasks.order(created_at:"DESC").page(params[:page]).per(10)
@@ -59,7 +59,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:task_name, :detail, :expired_at, :status, :priority)
+    params.require(:task).permit(:task_name, :detail, :expired_at, :status, :priority, label_ids:[])
   end
 
   def set_task

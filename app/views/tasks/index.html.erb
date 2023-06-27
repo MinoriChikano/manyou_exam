@@ -46,6 +46,9 @@
     <td><button type="button" class="btn btn-outline-primary"><%= link_to t('view.detail'), task_path(task.id) %></button></td>
     <td><button type="button" class="btn btn-outline-success"><%= link_to t('view.edit'), edit_task_path(task.id) %></button></td>
     <td><button type="button" class="btn btn-outline-danger"><%= link_to t('view.delete'), task_path(task.id), method: :delete ,data: { confirm: 'are you ok ?' } %></button></td>
+    <% task.labels.each do |label| %>
+      <td><%= label.name %></td>
+    <% end %>
   <% else %>
   <% end %>
   </tr>

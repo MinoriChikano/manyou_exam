@@ -1,7 +1,3 @@
-User.create!(
-  name: 'ニッチェ',
-  email: 'niche@test.com',
-  password: '222222',
-  password_confirmation: '222222',
-  admin: true
+Label.create!(
+  name: "保留"
 )

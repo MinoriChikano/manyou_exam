@@ -1,6 +1,9 @@
 class Task < ApplicationRecord
   validates :task_name, :detail, presence: true
   belongs_to :user
+  has_many :labellings, dependent: :destroy
+  has_many :labels, through: :labellings
+
 
   enum priority:{
     高: 1,
