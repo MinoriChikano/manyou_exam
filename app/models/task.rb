@@ -19,5 +19,4 @@ class Task < ApplicationRecord
   scope :search_by_name_and_status, -> (task_name,status){search(task_name).where(status:status)}
   scope :search_by_name, -> (task_name){search(task_name)}
   scope :search_by_status, -> (status){where(status:status)}
-      
 end

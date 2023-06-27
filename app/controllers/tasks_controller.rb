@@ -10,6 +10,11 @@ class TasksController < ApplicationController
     if params[:sort_priority]
       @tasks = current_user.tasks.order(priority:"ASC").page(params[:page]).per(10)
     end
+
+    if params[:label_id].present?
+      @labelling =Labelling.where(label_id: params[:label_id]).pluck(:task_id)
+      @tasks=@tasks.where(id: @labelling)
+    end
   end
 
   def new
@@ -52,7 +57,7 @@ class TasksController < ApplicationController
     elsif params[:status].present?
       @tasks = Task.search_by_status(params[:status])
     else
-      @tasks = Task.all
+      redirect_to tasks_path
     end
   end
 
