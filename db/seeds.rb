@@ -6,9 +6,9 @@ User.create!(
 )
 
 10.times do |n|
-  name: "シードくん#{n + 1}"
-  email: "seed#{n + 1}@test.com"
-  password: "123456"
+  name = "シードくん#{n + 1}"
+  email = "seed#{n + 1}@test.com"
+  password = "123456"
   
   User.create!(name: name, email: email, password: password, admin:false)
 end
