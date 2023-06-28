@@ -1,7 +1,7 @@
 User.create!(
   name: "管理者",
   email: "admin@test.com",
-  password: "123456"
+  password: "123456",
   admin: true
 )
 
@@ -18,4 +18,3 @@ end
 
   Label.create!(name: name)
 end
-
