@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_task, only: [:show, :edit, :update, :destroy,]
 
   def index
     @tasks = current_user.tasks.order(created_at:"DESC").page(params[:page]).per(10)
@@ -9,6 +9,11 @@ class TasksController < ApplicationController
 
     if params[:sort_priority]
       @tasks = current_user.tasks.order(priority:"ASC").page(params[:page]).per(10)
+    end
+
+    if params[:label_id].present?
+      @labelling =Labelling.where(label_id: params[:label_id]).pluck(:task_id)
+      @tasks=@tasks.where(id: @labelling)
     end
   end
 
@@ -52,14 +57,14 @@ class TasksController < ApplicationController
     elsif params[:status].present?
       @tasks = Task.search_by_status(params[:status])
     else
-      @tasks = Task.all
+      redirect_to tasks_path
     end
   end
 
   private
 
   def task_params
-    params.require(:task).permit(:task_name, :detail, :expired_at, :status, :priority)
+    params.require(:task).permit(:task_name, :detail, :expired_at, :status, :priority, label_ids:[])
   end
 
   def set_task

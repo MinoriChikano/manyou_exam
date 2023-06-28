@@ -10,5 +10,8 @@
     <td><%= @task.detail %></td>
     <td class = center_tag ><%= @task.status %></td>
     <td class = center_tag ><%= @task.priority %></td>
+    <% @task.labels.each do |label| %>
+      <td><%= label.name %></td>
+    <% end %>
   </tr>
 </table>
